@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEditor.SearchService;
 
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
+    public GameObject gameOverMenu;
     private int score;
     private float spawnRate = 1.0f;
+
+    public bool gameOver;
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
         StartCoroutine(SpawnEnemy());
         score = 0;
         UpdateScore(0);
+
     }
 
     // Update is called once per frame
@@ -24,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        while(true)
+        while(!gameOver)
         {
             yield return new WaitForSeconds(spawnRate);
             int randomIndex = Random.Range(0, targets.Count);
@@ -37,6 +44,17 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+    }
+
+    public void GameOver()
+    {
+        gameOver = true;
+        gameOverMenu.gameObject.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
