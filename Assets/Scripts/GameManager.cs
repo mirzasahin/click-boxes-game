@@ -6,6 +6,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    AudioManager audioManager;
+
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
 
@@ -19,6 +21,11 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1.0f;
 
     public bool gameOver;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +68,7 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
         gameOverMenu.gameObject.SetActive(true);
+        audioManager.PlaySFX(audioManager.gameOverSFX);
     }
 
     public void RestartGame()

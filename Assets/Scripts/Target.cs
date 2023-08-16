@@ -11,14 +11,19 @@ public class Target : MonoBehaviour
     private float xRange = 3.5f;
     private float ySpawnPos = -5;
 
+    AudioManager audioManager;
     public ParticleSystem explosionParticle;
 
     public int pointValue;
-
     private Rigidbody targetRb;
-
     private GameManager gameManager;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         targetRb = GetComponent<Rigidbody>();
@@ -41,6 +46,7 @@ public class Target : MonoBehaviour
     {
         if (!gameManager.gameOver)
         {
+            audioManager.PlaySFX(audioManager.expolosionSFX);
             Destroy(gameObject);
             gameManager.UpdateScore(pointValue);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
