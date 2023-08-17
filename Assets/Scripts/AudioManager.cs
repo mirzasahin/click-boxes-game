@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     private GameManager gameManager;
 
+
     [Header("---------- Audio Source ----------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
@@ -13,8 +14,11 @@ public class AudioManager : MonoBehaviour
 
     [Header("---------- Audio Clip ----------")]
     public AudioClip background;
-    public AudioClip expolosionSFX;
+    public AudioClip expolosionSFX1;
+    public AudioClip expolosionSFX2;
+    public AudioClip expolosionSFX3;
     public AudioClip gameOverSFX;
+
 
     private void Start()
     {
@@ -33,9 +37,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(AudioClip clip, float volume)
     {
+        SFXSource.volume = volume;
         SFXSource.PlayOneShot(clip);
+        Debug.Log(SFXSource.volume);
     }
 
 }

@@ -46,7 +46,21 @@ public class Target : MonoBehaviour
     {
         if (!gameManager.gameOver)
         {
-            audioManager.PlaySFX(audioManager.expolosionSFX);
+            if (gameObject.CompareTag("Good 1"))
+            {
+                audioManager.PlaySFX(audioManager.expolosionSFX1, 0.5f);
+            }
+
+            if (gameObject.CompareTag("Good 2"))
+            {
+                audioManager.PlaySFX(audioManager.expolosionSFX2, 0.5f);
+            }
+
+            if (gameObject.CompareTag("Good 3"))
+            {
+                audioManager.PlaySFX(audioManager.expolosionSFX3, 0.5f);
+            }
+
             Destroy(gameObject);
             gameManager.UpdateScore(pointValue);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
@@ -60,7 +74,7 @@ public class Target : MonoBehaviour
 
         if (!gameObject.CompareTag("Bad") && !gameManager.gameOver)
         {
-            gameManager.UpdateLives(-1);
+            //gameManager.UpdateLives(-1);
         }
     }
 

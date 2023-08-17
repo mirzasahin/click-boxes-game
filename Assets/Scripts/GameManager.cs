@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
         gameOverMenu.gameObject.SetActive(true);
-        audioManager.PlaySFX(audioManager.gameOverSFX);
+        audioManager.PlaySFX(audioManager.gameOverSFX, 0.5f);
     }
 
     public void RestartGame()
