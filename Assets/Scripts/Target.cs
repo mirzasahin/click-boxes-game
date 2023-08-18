@@ -44,7 +44,7 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!gameManager.gameOver)
+        if (!gameManager.gameOver && !gameManager.paused)
         {
             if (gameObject.CompareTag("Good 1"))
             {
@@ -70,16 +70,17 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-
         if (!gameObject.CompareTag("Bad") && !gameManager.gameOver)
         {
             gameManager.UpdateLives(-1);
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
-
-
+        if (other.gameObject.CompareTag("Bad"))
+        {
+            Debug.Log("Bad.");
+            Destroy(gameObject);
+        }
     }
 
     Vector3 RandomForce()

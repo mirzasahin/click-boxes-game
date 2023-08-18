@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
 {
     AudioManager audioManager;
 
+    public GameObject pauseScreen;
+    public bool paused;
+
+
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
 
@@ -35,6 +39,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ChangePaused();
+        }
     }
 
     IEnumerator SpawnEnemy()
@@ -87,6 +95,22 @@ public class GameManager : MonoBehaviour
 
         titleScreen.gameObject.SetActive(false);
         UpdateLives(3);
+    }
+
+    void ChangePaused()
+    {
+        if (!paused)
+        {
+            paused = true;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            paused = false;
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 
 
