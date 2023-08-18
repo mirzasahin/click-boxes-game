@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-
-    private float minSpeed = 15;
-    private float maxSpeed = 18;
+    private float minSpeed = 7;
+    private float maxSpeed = 15;
     private float maxTorque = 10;
     private float xRange = 3.5f;
     private float ySpawnPos = -5;
@@ -29,8 +28,6 @@ public class Target : MonoBehaviour
         targetRb = GetComponent<Rigidbody>();
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-
-        transform.position = RandomSpawnPos();
 
         //gameManager = FindObjectOfType<GameManager>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -97,8 +94,5 @@ public class Target : MonoBehaviour
         return Random.Range(-maxTorque, maxTorque);
     }
 
-    Vector3 RandomSpawnPos()
-    {
-        return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
-    }
+   
 }

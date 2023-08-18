@@ -6,11 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     private GameManager gameManager;
 
-
     [Header("---------- Audio Source ----------")]
     [SerializeField] public AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
-
 
     [Header("---------- Audio Clip ----------")]
     public AudioClip background;
@@ -23,9 +21,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
         musicSource.clip = background;
         musicSource.Play();
     }

@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     public bool paused;
 
-
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
 
@@ -34,7 +33,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
-
     }
 
     // Update is called once per frame
@@ -52,7 +50,8 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
             int randomIndex = Random.Range(0, targets.Count);
-            Vector3 spawnPosition = new Vector3(Random.Range(-4, 4), 0, 0);
+            Vector3 spawnPosition = new Vector3(Random.Range(-4, 4), 0, Random.Range(0, 10));
+            Debug.Log(spawnPosition);
             Instantiate(targets[randomIndex], spawnPosition, targets[randomIndex].transform.rotation);
         }
     }
@@ -113,7 +112,6 @@ public class GameManager : MonoBehaviour
             pauseScreen.SetActive(false);
             Time.timeScale = 1;
             audioManager.musicSource.Play();
-
         }
     }
 
