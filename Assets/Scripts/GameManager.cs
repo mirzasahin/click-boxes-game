@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
 
     }
 
@@ -104,12 +105,15 @@ public class GameManager : MonoBehaviour
             paused = true;
             pauseScreen.SetActive(true);
             Time.timeScale = 0;
+            audioManager.musicSource.Pause();
         }
         else
         {
             paused = false;
             pauseScreen.SetActive(false);
             Time.timeScale = 1;
+            audioManager.musicSource.Play();
+
         }
     }
 

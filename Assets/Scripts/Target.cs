@@ -61,6 +61,11 @@ public class Target : MonoBehaviour
                 audioManager.PlaySFX(audioManager.expolosionSFX3, 0.5f);
             }
 
+            if (gameObject.CompareTag("Bad"))
+            {
+                audioManager.PlaySFX(audioManager.badWarningSFX, 0.5f);
+            }
+
             Destroy(gameObject);
             gameManager.UpdateScore(pointValue);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
