@@ -70,17 +70,16 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!gameObject.CompareTag("Bad") && !gameManager.gameOver)
+        if (other.gameObject.CompareTag("Sensor"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Sensor") && !gameObject.CompareTag("Bad") && !gameManager.gameOver)
         {
             gameManager.UpdateLives(-1);
-            Destroy(gameObject);
         }
 
-        if (other.gameObject.CompareTag("Bad"))
-        {
-            Debug.Log("Bad.");
-            Destroy(gameObject);
-        }
+
     }
 
     Vector3 RandomForce()
