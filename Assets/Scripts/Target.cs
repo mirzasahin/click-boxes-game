@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    private float minSpeed = 7;
+    private float minSpeed = 8;
     private float maxSpeed = 14;
     private float maxTorque = 10;
-    private float xRange = 3.5f;
-    private float ySpawnPos = -5;
 
     AudioManager audioManager;
     public ParticleSystem explosionParticle;
