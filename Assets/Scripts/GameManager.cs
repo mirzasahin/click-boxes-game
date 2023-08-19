@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);
             int randomIndex = Random.Range(0, targets.Count);
             Vector3 spawnPosition = new Vector3(Random.Range(-4, 4), 0, Random.Range(0, 10));
-            Debug.Log(spawnPosition);
             Instantiate(targets[randomIndex], spawnPosition, targets[randomIndex].transform.rotation);
         }
     }
